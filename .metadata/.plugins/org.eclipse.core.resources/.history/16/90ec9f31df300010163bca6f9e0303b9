@@ -1,0 +1,5 @@
+package com.microservice3;
+
+public interface Client {
+
+}

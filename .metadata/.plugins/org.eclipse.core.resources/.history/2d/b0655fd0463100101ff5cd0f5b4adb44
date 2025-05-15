@@ -1,0 +1,37 @@
+package com.microservice3;
+
+import java.util.List;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
+
+
+@FeignClient(name="MICROSERVICE-1")
+public interface Client {
+
+	@GetMapping("/message")
+	public String getData();
+	
+	@PostMapping
+	public ResponseEntity<User> createUser(@RequestBody User user);
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<User> getUserById(@PathVariable Long id);
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user);
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteUser(@PathVariable Long id);
+	
+	@GetMapping
+	public ResponseEntity<List<User>> getAll();
+}

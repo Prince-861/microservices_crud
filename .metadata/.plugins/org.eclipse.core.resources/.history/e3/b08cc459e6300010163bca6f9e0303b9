@@ -1,0 +1,6 @@
+package com.microservice1.entity;
+
+@Entity
+public class User {
+	
+}

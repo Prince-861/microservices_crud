@@ -1,0 +1,8 @@
+package com.microservice3;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(name="MICROSERVICE-1")
+public interface Client {
+
+}

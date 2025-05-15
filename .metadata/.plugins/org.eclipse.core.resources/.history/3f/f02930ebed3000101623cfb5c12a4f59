@@ -1,0 +1,5 @@
+package com.microservice1.dto;
+
+public class User {
+
+}

@@ -1,0 +1,48 @@
+package com.microservice3;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/consumer/users")
+public class SecondController {
+	@Autowired
+	private Client client;
+	
+//	@GetMapping("/fromsecondcontroller")
+//	public String getMessageFromMicroservice1() {
+//		return client.getData();
+//	}
+	
+	@PostMapping
+	public ResponseEntity<User> createUser(@RequestBody User user){
+		return client.createUser(user);
+	}
+	@GetMapping("/{id}")
+	public ResponseEntity<User> getUserById(@PathVariable Long id){
+		return client.getUserById(id);
+	}
+	@PutMapping("/{id}")
+	public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user){
+		return client.updateUser(id, user);
+	}
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteUser(@PathVariable Long id){
+		return client.deleteUser(id);
+	}
+	@GetMapping
+	public ResponseEntity<List<User>> getAll(){
+		return client.getAll();
+	}
+
+}
